@@ -4,6 +4,7 @@ import Main from './module/main'
 import Login from './Login'
 import './App.css'
 import AuthCheck from './Auth'
+import './assets/fonts/iconfont.css'
 import 'semantic-ui-css/semantic.min.css'
 function Abc(){
   return <div>abc</div>
