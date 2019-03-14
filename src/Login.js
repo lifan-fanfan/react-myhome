@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Icon, Button, Form } from 'semantic-ui-react'
+import { Button, Form } from 'semantic-ui-react'
 import {withRouter} from 'react-router-dom'
 import axios from 'axios'
 import './Login.css'
@@ -25,8 +25,8 @@ class Login extends Component {
   }
   submit = async () => {
     // http://47.96.21.88:8086/users/login   登录接口地址
-    let { data: res } = await axios.post(
-      'http://47.96.21.88:8086/users/login',
+    let res = await axios.post(
+      'users/login',
       {
         uname: this.state.username,
         pwd: this.state.password
