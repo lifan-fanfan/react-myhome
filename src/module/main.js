@@ -7,6 +7,9 @@ import Home from './home/index'
 import Chat from './chat/index'
 import Info from './info/index'
 import My from './my/index'
+import Hlist from './home/hlist'
+import Calc from './home/calculator'
+import Map from './home/map'
 function Menu(props) {
   let { to, mname, icon } = props
   let iconClass = 'iconfont icon-' + icon
@@ -37,6 +40,9 @@ class Main extends Component {
             <Route path="/home/info" component={Info} />
             <Route path="/home/chat" component={Chat} />
             <Route path="/home/my" component={My} />
+            <Route path="/home/hlist" component={Hlist} />
+            <Route path="/home/calc" component={Calc} />
+            <Route path="/home/map" component={Map} />
           </Switch>
         </div>
         <div className="main-menu">

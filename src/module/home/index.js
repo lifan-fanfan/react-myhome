@@ -5,6 +5,8 @@ import ImageGallery from 'react-image-gallery'
 import 'react-image-gallery/styles/css/image-gallery.css'
 import axios from 'axios'
 import { baseURL } from '../../common'
+import { withRouter } from 'react-router-dom'
+
 
 
 // 房源组件
@@ -122,10 +124,35 @@ function Info(props) {
 }
 // 菜單組件
 function Menu(props) {
-  let { menuData } = props
+  let { menuData,history } = props
+  let handleMenu = (p,e) => {
+    switch(p) {
+      case '二手房':
+      history.push('/home/hlist',{query:{mname:p,type:1}})
+      break;
+      case '新房':
+      history.push('/home/hlist',{query:{mname:p,type:2}})
+      break;
+      case '租房':
+      history.push('/home/hlist',{query:{mname:p,type:3}})
+      break;
+      case '海外':
+      history.push('/home/hlist',{query:{mname:p,type:4}})
+      break;
+      case '地图找房':
+      history.push('/home/map',{query:{mname:p}})
+      break;
+      case '计算器':
+      history.push('/home/calc',{query:{mname:p}})
+      break;
+      default: 
+      console.log('other')
+      break;
+    }
+  }
   let menuInfo = menuData.map(item => {
     return (
-      <Grid.Column key={item.id}>
+      <Grid.Column key={item.id} onClick={handleMenu.bind(this,item.menu_name)}>
         <div className="home-menu-item">
           <Icon name="home" size="big" />
         </div>
@@ -173,6 +200,7 @@ class Home extends Component {
         faq: ret[3],
         house: ret[4]
       },()=>{
+        // console.log(this.state.menu)
         this.setState({
           loadFlag: false
         })
@@ -180,6 +208,7 @@ class Home extends Component {
     })
   }
   render() {
+    let {history} = this.props
     return (
       <div className="home-container">
         {/*遮罩效果*/}
@@ -205,7 +234,7 @@ class Home extends Component {
           </div>
           {/* 菜单组件 */}
           <div>
-            <Menu menuData={this.state.menu} />
+            <Menu history={history} menuData={this.state.menu} />
           </div>
           {/* 资讯组件 */}
           <div className="home-msg">
@@ -225,4 +254,4 @@ class Home extends Component {
     )
   }
 }
-export default Home
+export default withRouter(Home)

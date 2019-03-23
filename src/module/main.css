@@ -35,3 +35,7 @@
 .active {
   color: orange;
 }
+.ui.grid>.row {
+  margin: 7px 0 !important;
+  padding: 0 !important;
+}
